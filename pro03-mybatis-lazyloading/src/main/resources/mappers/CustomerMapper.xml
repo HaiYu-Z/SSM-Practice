@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.CustomerMapper">
+
+    <select id="selectCustomerById" resultType="com.atguigu.mybatis.entity.Customer">
+        select customer_id,customer_name from t_customer where customer_id=#{customerId}
+    </select>
+
+
+    <resultMap id="selectCustomerWithOrderTowStepResultMap" type="com.atguigu.mybatis.entity.Customer">
+        <result column="customer_id" property="customerId"/>
+        <result column="customer_name" property="customerName"/>
+
+        <collection property="orderList"
+                    column="customer_id"
+                    select="com.atguigu.mybatis.mapper.OrderMapper.selectOrderById"/>
+    </resultMap>
+    <select id="selectCustomerWithOrderTowStep" resultMap="selectCustomerWithOrderTowStepResultMap">
+        select customer_id,customer_name from t_customer where customer_id = #{customerId}
+    </select>
+
+</mapper>

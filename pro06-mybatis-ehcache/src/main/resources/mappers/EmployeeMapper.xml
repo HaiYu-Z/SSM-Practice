@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.EmployeeMapper">
+    <!--开启二级缓存-->
+    <cache type="org.com.atguigu.mybatis.caches.ehcache.EhcacheCache"></cache>
+
+    <select id="selectEmpById" resultType="com.atguigu.mybatis.entity.Employee">
+        select emp_id,emp_name,emp_salary from t_emp where emp_id = #{empId}
+    </select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.EmployeeMapper">
+
+    <select id="selectEmpByCondition" resultType="com.atguigu.mybatis.entity.Employee">
+        select emp_id,emp_name,emp_salary from t_emp
+        <where>
+            <if test="empName != null">
+                or emp_name = #{empName}
+            </if>
+            <if test="empSalary > 2000">
+                and emp_salary > 2000
+            </if>
+        </where>
+    </select>
+
+
+    <update id="updateEmpCondition">
+        update t_emp
+        <set>
+            <if test="empName != null">
+                emp_name = #{empName},
+            </if>
+            <if test="empSalary &gt; 2000">
+                emp_salary = #{empSalary},
+            </if>
+        </set>
+        where emp_id = #{empId}
+    </update>
+
+
+    <insert id="batchInsert">
+        insert into t_emp(emp_name, emp_salary)
+
+        <!--separator属性：每个循环体生成的字符串之间的分割符-->
+        <!--open属性：针对整个foreach标签生产的字符串整体，要加到前面的字符串-->
+        <foreach collection="empList" item="emp" separator="," open="values">
+            (#{emp.empName},#{emp.empSalary})
+        </foreach>
+    </insert>
+</mapper>

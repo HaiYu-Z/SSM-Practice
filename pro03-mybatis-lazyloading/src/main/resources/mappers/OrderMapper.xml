@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.OrderMapper">
+
+    <select id="selectOrderById" resultType="com.atguigu.mybatis.entity.Order">
+        select order_id,order_name,customer_id from t_order where customer_id = #{customerId}
+    </select>
+
+
+    <resultMap id="selectOrderWithCustomerTwoStepResultMap" type="com.atguigu.mybatis.entity.Order">
+        <result column="order_id" property="orderId"/>
+        <result column="order_name" property="orderName"/>
+        <result column="customer_id" property="customerId"/>
+
+        <association property="customer" column="customer_id" select="com.atguigu.mybatis.mapper.CustomerMapper.selectCustomerById">
+
+        </association>
+    </resultMap>
+    <select id="selectOrderWithCustomerTwoStep" resultMap="selectOrderWithCustomerTwoStepResultMap">
+        select order_id,order_name,customer_id from t_order where order_id=#{orderId}
+    </select>
+
+</mapper>
