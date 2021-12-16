@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.atguigu</groupId>
-    <artifactId>pro06-com.atguigu.mybatis-ehcache</artifactId>
+    <artifactId>pro06-mybatis-ehcache</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -16,8 +16,8 @@
     <dependencies>
         <!-- Mybatis核心 -->
         <dependency>
-            <groupId>org.com.atguigu.mybatis</groupId>
-            <artifactId>com.atguigu.mybatis</artifactId>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
             <version>3.5.7</version>
         </dependency>
 
@@ -53,8 +53,8 @@
 
         <!-- Mybatis EHCache整合包 -->
         <dependency>
-            <groupId>org.com.atguigu.mybatis.caches</groupId>
-            <artifactId>com.atguigu.mybatis-ehcache</artifactId>
+            <groupId>org.mybatis.caches</groupId>
+            <artifactId>mybatis-ehcache</artifactId>
             <version>1.2.1</version>
         </dependency>
         <!-- slf4j日志门面的一个具体实现 -->
