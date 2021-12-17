@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Hello SpringMVC</h2>
+
+    <a th:href="@{/springmvc(username='Tom',password='123456')}">HelloWorld</a>
+
+    <form th:action="@{/city}" method="post">
+        <input type="checkbox" name="city" value="广州">广州
+        <input type="checkbox" name="city" value="深圳">深圳
+        <br>
+        <input type="submit" value="提交">
+    </form>
+
+    <a th:href="@{/forward/hello}">转发到hello.html页面</a>
+    <a th:href="@{/redirect/hello}">重定向到hello.html页面</a>
+</body>
+</html>
