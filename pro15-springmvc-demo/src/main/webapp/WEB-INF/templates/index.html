@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="text-align: center">
+    <h1>Hello SpringMVC</h1>
+    <a th:href="@{/show/list}">显示电影列表</a>
+
+    <h2>测试PUT和DELETE</h2>
+    <form th:action="@{/emp}" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="msg" value="你好">
+        <input type="submit" value="PUT">
+    </form>
+    <table id="dataTable">
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>30</td>
+            <td>
+                <a th:href="@{/emp}" @click="doConvert">删除</a>
+            </td>
+        </tr>
+    </table>
+
+    <form id="convertForm" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+    </form>
+</body>
+<script th:src="@{/script/vue.js}"></script>
+<script>
+    new Vue({
+        "el":"#dataTable",
+        "methods":{
+            "doConvert":function () {
+                var formELe = document.getElementById("convertForm");
+                formELe.action = event.target.href;
+                formELe.submit();
+                event.preventDefault();
+            }
+        }
+    })
+</script>
+</html>

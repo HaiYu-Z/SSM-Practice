@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 0px auto 0px auto;
+        }
+        table th,td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        body a {
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table id="dataTable">
+        <tr>
+            <th>电影ID</th>
+            <th>电影名称</th>
+            <th>电影价格</th>
+            <th>修改</th>
+            <th>删除</th>
+        </tr>
+        <tbody th:if="${#lists.isEmpty(movieList)}">
+            <tr>
+                <td colspan="5">抱歉！没有查询到数据！</td>
+            </tr>
+            <tr>
+                <td colspan="5"><a th:href="@{/movie/add/page}">添加电影</a></td>
+            </tr>
+        </tbody>
+        <tbody th:if="${not #lists.isEmpty(movieList)}">
+            <tr th:each="movie : ${movieList}">
+                <td th:text="${movie.movieId}"></td>
+                <td th:text="${movie.movieName}"></td>
+                <td th:text="${movie.moviePrice}"></td>
+                <td><a th:href="@{/movie/} + ${movie.movieId}">修改</a></td>
+                <td><a th:href="@{/movie/} + ${movie.movieId}" @click="doConvert">删除</a></td>
+            </tr>
+            <tr>
+                <td colspan="5"><a th:href="@{/movie/add/page}">添加电影</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/}">回首页</a>
+
+
+    <form id="convertForm" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+    </form>
+    <script th:src="@{/script/vue.js}"></script>
+    <script>
+        new Vue({
+            "el":"#dataTable",
+            "methods":{
+                "doConvert":function () {
+                    var formELe = document.getElementById("convertForm");
+                    formELe.action = event.target.href;
+                    formELe.submit();
+                    event.preventDefault();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
