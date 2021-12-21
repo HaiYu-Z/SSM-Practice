@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="text-align: center">
+    <h3>Hello SpringMVC</h3>
+    <a th:href="@{/common/request/one}">普通请求</a><br><br>
+
+    <h2>类型转换</h2>
+    <form th:action="@{/save/product}" method="post">
+        生产日期：<input type="text" name="productDate" value="2000-01-01 00:00:00"><br>
+        产品价格：<input type="text" name="productPrice" value="1,0000.00"><br><br>
+        <input type="submit" value="提交">
+    </form>
+</body>
+</html>

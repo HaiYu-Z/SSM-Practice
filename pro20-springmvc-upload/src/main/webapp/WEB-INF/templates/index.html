@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="text-align: center">
+    <h3>Hello SpringMVC</h3>
+    <h5>上传文件的表单</h5>
+    <form th:action="@{/atguigu/upload}" method="post" enctype="multipart/form-data">
+        用户名：<input type="text" name="username"><br>
+        头  像：<input type="file" name="picture"><br><br>
+        <button type="submit">上传头像</button>
+    </form>
+</body>
+</html>

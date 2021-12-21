@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="text-align: center">
+    <h3>Hello SpringMVC</h3>
+    <a th:href="@{/throw/arithmetic/exception}">算数异常</a><br>
+    <a th:href="@{/throw/nullpointer/exception}">空指针异常</a><br>
+    <a th:href="@{/throw/out/of/index/exception/common}">数组下标越界异常</a><br>
+
+    <div id="butDiv">
+        <button @click="sendAjaxRequest">发送一个Ajax请求</button>
+    </div>
+
+    <script th:src="@{/script/vue.js}"></script>
+    <script th:src="@{/script/axios.min.js}"></script>
+    <script>
+        new Vue({
+            "el":"#butDiv",
+            "methods":{
+                "sendAjaxRequest":function () {
+                    axios({
+                        "method":"post",
+                        "url":"[[@{/throw/out/of/index/exception/ajax}]]"
+                    }).then(function (response) {
+                        console.log(response)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

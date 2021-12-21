@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <base href="/pro17/">
+</head>
+<body style="text-align: center">
+    <h2>Hello SpringMVC</h2>
+    <span id="btnSpan">
+        <button id="btn01" @click="experimentOne">实验一</button>
+        <button id="btn02" @click="experimentTwo">实验二</button>
+        <button id="btn03" @click="experimentThree">实验三</button>
+    </span>
+
+    <script src="script/axios.min.js"></script>
+    <script src="script/vue.js"></script>
+    <script>
+        new Vue({
+            "el":"#btnSpan",
+            "methods":{
+                "experimentOne":function () {
+                    axios({
+                        "method":"post",
+                        "url":"ajax/experiment/one",
+                        "params":{
+                            "username":"Tom",
+                            "password":"123456"
+                        }
+                    }).then(function (response) {
+                        console.log(response)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
+                },
+                "experimentTwo":function () {
+                    axios({
+                        "method":"post",
+                        "url":"ajax/experiment/two",
+                        "data":{
+                            "stuId": 55,
+                            "stuName": "tom",
+                            "subjectList": [
+                                {
+                                    "subjectName": "java",
+                                    "subjectScore": 50.55
+                                },
+                                {
+                                    "subjectName": "php",
+                                    "subjectScore": 30.26
+                                }
+                            ],
+                            "teacherMap": {
+                                "one": {
+                                    "teacherName":"tom",
+                                    "teacherAge":23
+                                },
+                                "two": {
+                                    "teacherName":"jerry",
+                                    "teacherAge":31
+                                },
+                            },
+                            "school": {
+                                "schoolId": 23,
+                                "schoolName": "atguigu"
+                            }
+                        }
+                    }).then(function (response) {
+                        console.log(response);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                },
+                "experimentThree":function () {
+                    axios({
+                        "method":"post",
+                        "url":"ajax/experiment/three"
+                    }).then(function (response) {
+                        console.log(response)
+                        console.log("teacherName = " + response.data.teacherName)
+                        console.log("teacherAge = " + response.data.teacherAge)
+                    }).catch(function (error) {
+                        console.log(error)
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
