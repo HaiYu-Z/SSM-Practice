@@ -22,7 +22,7 @@ public class MyBatisTest {
         SqlSessionFactory factory = builder.build(is);
         SqlSession session = factory.openSession();
 
-        String statement = "com.atguigu.com.atguigu.mybatis.dao.EmployeeMapper.selectEmployee";
+        String statement = "com.atguigu.mybatis.dao.EmployeeMapper.selectEmployee";
         Integer empId = 1;
         Object o = session.selectOne(statement, empId);
         System.out.println(o);

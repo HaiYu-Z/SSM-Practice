@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--在全局范围内对MyBatis进行配置-->
+    <settings>
+        <!--开启自动映射驼峰式命名规则-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--&lt;!&ndash;开启延迟加载功能&ndash;&gt;-->
+        <!--<setting name="lazyLoadingEnabled" value="true"/>-->
+    </settings>
+
+    <!--指定实体类的别名-->
+    <typeAliases>
+        <package name="com.atguigu.ssm.entity"/>
+    </typeAliases>
+</configuration>
