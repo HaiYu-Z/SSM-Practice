@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 0px auto 0px auto;
+        }
+        table th,td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        #index {
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Salary</td>
+        </tr>
+        <tbody th:if="${#lists.isEmpty(pageInfo.list)}">
+            <tr>
+                <td colspan="3">抱歉，没有查询到数据！</td>
+            </tr>
+        </tbody>
+        <tbody th:if="${not #lists.isEmpty(pageInfo.list)}">
+            <tr th:each="emp : ${pageInfo.list}">
+                <td th:text="${emp.empId}"></td>
+                <td th:text="${emp.empName}"></td>
+                <td th:text="${emp.empSalary}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <div style="text-align: center">
+        <span th:if="${pageInfo.hasPreviousPage}">
+            <a th:href="@{/get/page/1}">首页</a>
+            <a th:href="@{/get/page/} + ${pageInfo.prePage}">上一页</a>
+        </span>
+
+        <span th:each="navigate : ${pageInfo.navigatepageNums}">
+            <a th:if="${navigate != pageInfo.pageNum}"
+               th:href="@{/get/page/} + ${navigate}"
+               th:text="${navigate}"></a>
+            <span th:if="${navigate == pageInfo.pageNum}" th:text="${navigate}"></span>
+        </span>
+
+        <span th:if="${pageInfo.hasNextPage}">
+            <a th:href="@{/get/page/} + ${pageInfo.nextPage}">下一页</a>
+            <a th:href="@{/get/page/} + ${pageInfo.pages}">末页</a>
+        </span>
+    </div>
+
+    <br><br>
+    <a id="index" th:href="@{/}">回首页</a>
+</body>
+</html>

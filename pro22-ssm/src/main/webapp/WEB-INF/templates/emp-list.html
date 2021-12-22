@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 0px auto 0px auto;
+        }
+        table th,td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        body a {
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Salary</td>
+        </tr>
+        <tbody th:if="${#lists.isEmpty(empList)}">
+            <tr>
+                <td colspan="3">抱歉，没有查询到数据！</td>
+            </tr>
+        </tbody>
+        <tbody th:if="${not #lists.isEmpty(empList)}">
+            <tr th:each="emp : ${empList}">
+                <td th:text="${emp.empId}"></td>
+                <td th:text="${emp.empName}"></td>
+                <td th:text="${emp.empSalary}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <a th:href="@{/}">回首页</a>
+</body>
+</html>
